@@ -1,24 +1,68 @@
-# README
+# テーブル設計
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## users テーブル
 
-Things you may want to cover:
+| Column             | Type   | Options     |
+| ------------------ | ------ | ----------- |
+| email               | string | null: false, unique: true |
+| password   | string | null: false |
+| nickname            | string | null: false |
+| name   | string | null: false |
+| name_kana   | string | null: false |
+| birth_date   | date | null: false |
 
-* Ruby version
+### Association
 
-* System dependencies
+- has_many :items
+- has_many :purchases
 
-* Configuration
 
-* Database creation
+## items テーブル
 
-* Database initialization
+| Column | Type   | Options     |
+| ------ | ------ | ----------- |
+| user   | references | null: false, foreign_key: true |
+| title   | string | null: false |
+| category   | string | null: false |
+| price   | integer | null: false |
+| description   | text | null: false |
+| condition   | string | null: false |
+| shipping_fee_payer   | string | null: false |
+| shipping_origin   | string | null: false |
+| processing_time   | string | null: false |
 
-* How to run the test suite
+### Association
 
-* Services (job queues, cache servers, search engines, etc.)
+- has_one : purchase
+- belongs_to :user
 
-* Deployment instructions
 
-* ...
+## purchases テーブル
+
+| Column  | Type       | Options                        |
+| ------- | ---------- | ------------------------------ |
+| user    | references | null: false, foreign_key: true |
+| item    | references | null: false, foreign_key: true |
+
+### Association
+
+- has_one :destination
+- belongs_to :user
+- belongs_to :item
+
+
+## destinations テーブル
+
+| Column | Type   | Options     |
+| ------ | ------ | ----------- |
+| purchase   | references | null: false, foreign_key: true |
+| post_code   | integer | null: false |
+| prefecture   | strings | null: false |
+| city   | strings | null: false |
+| building   | strings | null: false |
+| phone_number   | integer | null: false |
+
+
+### Association
+
+- belongs_to :purchase
