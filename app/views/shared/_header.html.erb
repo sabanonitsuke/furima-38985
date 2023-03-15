@@ -20,8 +20,8 @@
         <li><%= link_to current_user.nickname, root_path, class: "user-nickname" %> </li>
         <li><%= link_to 'ログアウト', root_path, method: :delete, class: "logout" %> </li>
       <% else %>
-        <li><%= link_to 'ログイン', root_path, class: "login" %></li>
-        <li><%= link_to '新規登録', root_path, class: "sign-up" %></li>
+        <li><%= link_to 'ログイン', new_user_session_path, class: "login" %></li>
+        <li><%= link_to '新規登録', new_user_registration_path, class: "sign-up" %></li>
       <% end %>
       <%# //deviseを導入できたら、ログインの有無で表示が変わるように分岐しましょう%>
     </ul>
