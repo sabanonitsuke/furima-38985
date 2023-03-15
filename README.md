@@ -61,6 +61,7 @@
 | post_code   | string | null: false |
 | prefecture_id   | integer | null: false |
 | city   | strings | null: false |
+| street_address | strings | null: false |
 | building   | strings |  |
 | phone_number   | string | null: false |
 
