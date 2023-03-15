@@ -11,7 +11,7 @@
 | first_name   | string | null: false |
 | last_name_kana   | string | null: false |
 | first_name_kana   | string | null: false |
-| birth_date   | date | null: false |
+| birth_date   | datetime | null: false |
 
 ### Association
 
@@ -60,9 +60,9 @@
 | purchase   | references | null: false, foreign_key: true |
 | post_code   | string | null: false |
 | prefecture_id   | integer | null: false |
-| city   | strings | null: false |
-| street_address | strings | null: false |
-| building   | strings |  |
+| city   | string | null: false |
+| street_address | string | null: false |
+| building   | string |  |
 | phone_number   | string | null: false |
 
 
