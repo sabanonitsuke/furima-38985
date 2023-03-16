@@ -1,5 +1,6 @@
 FactoryBot.define do
   factory :user do
+    Faker::Config.locale = 'ja'
     email {Faker::Internet.free_email}
     password {Faker::Internet.password(min_length: 6, special_characters: false)}
     password_confirmation {password}
