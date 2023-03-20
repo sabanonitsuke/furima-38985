@@ -8,11 +8,19 @@ class ItemsController < ApplicationController
     @item = Item.new
   end
 
+  def create
+    
+  end
+
   private
   def redirect_to_index
     unless user_signed_in?
       redirect_to new_user_session_path
     end
+  end
+
+  def items_params
+    
   end
 
 end
