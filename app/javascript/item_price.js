@@ -5,7 +5,7 @@ function loaded() {
   itemPrice.addEventListener("keyup", () => {
     const priceVal = itemPrice.value;
     const tax = Math.floor(priceVal * 10 / 100)
-    addTaxPrice.innerHTML = Math.floor(tax);
+    addTaxPrice.innerHTML = tax;
     Profit.innerHTML = Math.floor(priceVal - tax);
   });
 };
