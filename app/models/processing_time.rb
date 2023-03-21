@@ -8,5 +8,4 @@ class ProcessingTime < ActiveHash::Base
 
   include ActiveHash::Associations
   has_many :items
-
 end
