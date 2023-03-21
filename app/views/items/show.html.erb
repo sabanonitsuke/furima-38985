@@ -23,7 +23,7 @@
       </span>
     </div>
 
-      <% if user_signed_in? && (current_user.id == @item.id) %> <%# 販売済みの場合は表示しない処理追加する %>
+      <% if user_signed_in? && (current_user.id == @item.user_id) %> <%# 販売済みの場合は表示しない処理追加する %>
         <%= link_to "商品の編集", "#", method: :get, class: "item-red-btn" %>
         <p class="or-text">or</p>
         <%= link_to "削除", "#", method: :delete, class:"item-destroy" %>
