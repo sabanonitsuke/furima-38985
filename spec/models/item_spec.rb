@@ -59,17 +59,17 @@ RSpec.describe Item, type: :model do
       it 'priceが全角数字だと登録できない' do
         @item.price = '１１１１１１'
         @item.valid?
-        expect(@item.errors.full_messages).to include('Price is invalid')
+        expect(@item.errors.full_messages).to include("Price isn't integer")
       end
       it 'priceが300未満だと登録できない' do
         @item.price = '299'
         @item.valid?
-        expect(@item.errors.full_messages).to include('Price is invalid')
+        expect(@item.errors.full_messages).to include('Price is out of setting range')
       end
       it 'priceが10000000以上だと登録できない' do
         @item.price = '10000000'
         @item.valid?
-        expect(@item.errors.full_messages).to include('Price is invalid')
+        expect(@item.errors.full_messages).to include('Price is out of setting range')
       end
       it 'imageが添付されていないと登録できない' do
         @item.image = nil
