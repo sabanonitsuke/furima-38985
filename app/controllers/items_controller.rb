@@ -34,6 +34,10 @@ class ItemsController < ApplicationController
     end
   end
 
+  def destroy
+    binding.pry
+  end
+
   private
   def redirect_to_index
     redirect_to root_path unless current_user == @item.user
