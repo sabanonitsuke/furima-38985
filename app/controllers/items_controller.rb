@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :redirect_to_index, only: :new
+  before_action :redirect_to_index, only: [:new, :edit]
   before_action :get_item, only: [:show, :edit]
 
   def index
