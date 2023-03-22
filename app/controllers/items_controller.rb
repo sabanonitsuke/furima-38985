@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
-  before_action :get_item, only: [:show, :edit, :update]
-  before_action :redirect_to_session, only: [:new, :edit]
-  before_action :redirect_to_index, only: :edit
+  before_action :get_item, except: [:index, :new, :create]
+  before_action :redirect_to_session, only: [:new, :edit, :destroy]
+  before_action :contributor_confirmation, only: [:edit, :update, :destroy]
 
   def index
     @items = Item.order('created_at DESC')
@@ -34,8 +34,16 @@ class ItemsController < ApplicationController
     end
   end
 
+  def destroy
+    if @item.destroy
+      redirect_to root_path
+    else
+      redirect_to root_path
+    end
+  end
+
   private
-  def redirect_to_index
+  def contributor_confirmation
     redirect_to root_path unless current_user == @item.user
   end
 
