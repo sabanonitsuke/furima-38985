@@ -4,18 +4,40 @@ class PurchasesController < ApplicationController
   before_action :buyer_confirmation, only: [:index]
 
   def index
+    @purchase_destination = PurchaseDestination.new
   end
   
+  def create
+    @purchase_destination = PurchaseDestination.new(purchase_params)
+    if @purchase_destination.valid?
+      @purchase_destination.save
+      redirect_to root_path
+    else
+      get_item
+      render :index
+    end
+  end
+
   private
+
   def get_item
     @item = Item.find(params[:item_id])
   end
+
   def redirect_to_session
     return if user_signed_in?
 
     redirect_to new_user_session_path
   end
+
   def buyer_confirmation
-    redirect_to root_path if current_user == @item.user
+    if current_user == @item.user
+      redirect_to root_path 
+    end
+  end
+
+  def purchase_params
+    binding.pry
+    params.require(:purchase_destination).permit(:postal_code, :prefecture_id, :city, :house_number, :building_name, :phone_number).merge(user_id: current_user.id, item_id: params[:item_id] )
   end
 end
