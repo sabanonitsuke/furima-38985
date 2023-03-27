@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
   before_action :get_item, except: [:index, :new, :create]
   before_action :redirect_to_session, only: [:new, :edit, :destroy]
-  before_action :contributor_confirmation, only: [:edit, :update, :destroy]
+  before_action :seller_confirmation, only: [:edit, :update, :destroy]
 
   def index
     @items = Item.order('created_at DESC')
@@ -43,7 +43,7 @@ class ItemsController < ApplicationController
   end
 
   private
-  def contributor_confirmation
+  def seller_confirmation
     redirect_to root_path unless current_user == @item.user
   end
 
