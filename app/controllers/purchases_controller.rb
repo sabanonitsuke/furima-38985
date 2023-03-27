@@ -37,7 +37,6 @@ class PurchasesController < ApplicationController
   end
 
   def purchase_params
-    binding.pry
     params.require(:purchase_destination).permit(:postal_code, :prefecture_id, :city, :house_number, :building_name, :phone_number).merge(user_id: current_user.id, item_id: params[:item_id] )
   end
 end
