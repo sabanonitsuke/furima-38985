@@ -12,7 +12,6 @@ class PurchaseDestination
     validates :house_number
     validates :phone_number
   end
-  validates :building_name
 
   def save
     purchase = Purchase.create(user_id: user_id, item_id: item_id)
