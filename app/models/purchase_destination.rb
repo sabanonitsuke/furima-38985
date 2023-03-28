@@ -1,6 +1,6 @@
 class PurchaseDestination
   include ActiveModel::Model
-  attr_accessor :user_id, :item_id, :postal_code, :prefecture_id, :city, :house_number, :building_name, :phone_number
+  attr_accessor :user_id, :item_id, :postal_code, :prefecture_id, :city, :house_number, :building_name, :phone_number, :token
 
 
   with_options presence: true do
@@ -10,6 +10,7 @@ class PurchaseDestination
     validates :city
     validates :house_number
     validates :phone_number,  length: { minimum: 10 , message: "is too short"}, numericality: { only_integer: true , message:"is invalid. Input only number"}
+    validates :token
   end
   validates :prefecture_id, numericality: { other_than: 1, message: "can't be blank" }
 
