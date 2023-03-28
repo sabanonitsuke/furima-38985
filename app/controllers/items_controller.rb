@@ -44,6 +44,7 @@ class ItemsController < ApplicationController
   end
 
   private
+
   def get_item
     @item = Item.find(params[:id])
   end
@@ -64,8 +65,8 @@ class ItemsController < ApplicationController
   end
 
   def redirect_if_sold_out
-    if @item.purchase.present?
-      redirect_to root_path
-    end
+    return unless @item.purchase.present?
+
+    redirect_to root_path
   end
 end
