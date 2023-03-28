@@ -2,7 +2,7 @@ class PurchasesController < ApplicationController
   before_action :get_item, only: [:index, :create]
   before_action :redirect_to_session, only: [:index, :create]
   before_action :buyer_confirmation, only: [:index, :create]
-  before_action :buyer_confirmation, only: [:index, :create]
+  before_action :redirect_if_sold_out, only: [:index, :create]
 
   def index
     @purchase_destination = PurchaseDestination.new
