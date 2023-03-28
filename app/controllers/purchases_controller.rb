@@ -2,6 +2,7 @@ class PurchasesController < ApplicationController
   before_action :get_item, only: [:index, :create]
   before_action :redirect_to_session, only: [:index, :create]
   before_action :buyer_confirmation, only: [:index, :create]
+  before_action :buyer_confirmation, only: [:index, :create]
 
   def index
     @purchase_destination = PurchaseDestination.new
@@ -49,5 +50,11 @@ class PurchasesController < ApplicationController
       card: purchase_params[:token],
       currency: 'jpy'
     )
+  end
+
+  def redirect_if_sold_out
+    return unless @item.purchase.present?
+
+    redirect_to root_path
   end
 end
