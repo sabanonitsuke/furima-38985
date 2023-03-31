@@ -1,6 +1,9 @@
 # capistranoのバージョンを記載。固定のバージョンを利用し続け、バージョン変更によるトラブルを防止する
 lock '3.17.2'
 
+#ブランチの名前を変更する
+set :branch, 'main'
+
 # Capistranoのログの表示に利用する
 set :application, 'furima-38985'
 
@@ -24,8 +27,7 @@ set :unicorn_pid, -> { "#{shared_path}/tmp/pids/unicorn.pid" }
 set :unicorn_config_path, -> { "#{current_path}/config/unicorn.rb" }
 set :keep_releases, 5
 
-#ブランチの名前を変更する
-set :branch, 'main'
+
 
 # デプロイ処理が終わった後、Unicornを再起動するための記述
 after 'deploy:publishing', 'deploy:restart'
